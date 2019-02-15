@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "UTF-8">
+      <title>Menus</title>
+   </head>
+   <style type="text/css">
+  
+webview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-flex !important;
+}
+
+</style>
+   <body>
+      <div>
+         <div>
+            <h2 style="color: red; text-align: center;">Cargando ...</h2>
+         </div>
+         <webview id = "foo" src = "http://babilonia-lima.dyndns.org:8080/colossus/login">
+            <div class = "indicator"></div>
+         </webview>
+      </div>
+      
+      <script type = "text/javascript">
+         // Event handlers for loading events.
+         // Use these to handle loading screens, transitions, etc
+         onload = () => {
+            const webview = document.getElementById('foo')
+            const indicator = document.querySelector('.indicator')
+
+            const loadstart = () => {
+               indicator.innerText = 'loading...'
+            }
+
+            const loadstop = () => {
+               indicator.innerText = ''
+            }
+
+            webview.addEventListener('did-start-loading', loadstart)
+            webview.addEventListener('did-stop-loading', loadstop)
+         }
+      </script>
+   </body>
+</html>
